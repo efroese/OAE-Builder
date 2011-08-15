@@ -150,6 +150,12 @@ task :fastrebuild do
   system("cd ../nakamura/app && #{MVN_CMD} clean install")
 end
 
+desc "Rebuild the nyu profile and app jar."
+task :nyu do
+  system("cd ../nakamura && #{MVN_CMD} -Pnyu clean install")
+  system("cd ../nakamura/contrib/nyu/ && #{MVN_CMD} clean install")
+end
+
 desc "Start a running server. Will kill the previously started server if still running."
 task :run => [:kill] do
   app_file = nil
